@@ -31,13 +31,24 @@ void print_side(struct side s, size_t length) {
 }
 
 int main() {
+	/*       ---   TESTING   ----
 	struct side s = {0, 2, 2, 3, 2, 2, 2, 2, 2};
 	const int s_length = 9;
 	print_side(s, s_length);
 	clockwise(&s, s_length);
 	print_side(s, s_length);	
 	counterclockwise(&s, s_length);
-	print_side(s, s_length);
+	print_side(s, s_length);	
+	*/
+
+	struct side cube[6];
+					//  # of colors
+	for (int i = 0; i < 6; i++) {
+		cube[i] = (struct side) {i, i, i, i, i, i, i, i, i};
+	}
+	for (int i = 0; i < 6; i++) {
+		print_side(cube[i].faces, 9);
+	}
 }
 
 void clockwise(struct side* s, size_t length) {
