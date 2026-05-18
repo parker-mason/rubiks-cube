@@ -17,7 +17,7 @@ enum color_int {
 char* color_str[6] = {"white", "orange", "green", "red", "blue", "yellow"};
 
 void clockwise(struct side* , size_t );
-void counterclockwise(struct side* , size_t);
+void counterclockwise(struct side* , size_t );
 
 char* color_convert(const int num) {
 	return color_str[num];
@@ -31,17 +31,18 @@ void print_side(struct side s, size_t length) {
 }
 
 int main() {
-	struct side s = {1, 1, 1, 1, 1, 1, 1, 1, 1};
+	struct side s = {0, 2, 2, 3, 2, 2, 2, 2, 2};
 	const int s_length = 9;
-	for (int i = 0; i < 3; i++) {
-		clockwise(&s, s_length);
-		print_side(s, s_length);
-	}
+	print_side(s, s_length);
+	clockwise(&s, s_length);
+	print_side(s, s_length);	
+	counterclockwise(&s, s_length);
+	print_side(s, s_length);
 }
 
 void clockwise(struct side* s, size_t length) {
 	int current, previous;
-	for (int i = 1; i < length; i++) {
+	for (int i = 1; i < length; i++) { // s[0] is the centre
 		if (i == 1) {
 			previous = s->faces[length-1];
 		}
@@ -51,4 +52,14 @@ void clockwise(struct side* s, size_t length) {
 	}
 }
 
-void counterclockwise(struct side*, size_t);
+void counterclockwise(struct side* s, size_t length) {
+	int current, previous;
+	for (int i = length - 1; i > 0; i--) {
+		if (i == length - 1) {
+			previous = s->faces[1];
+		}
+		current = s->faces[i];
+		s->faces[i] = previous;
+		previous = current;
+	}
+}
