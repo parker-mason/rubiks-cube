@@ -47,7 +47,7 @@ int main() {
 		cube[i] = (struct side) {i, i, i, i, i, i, i, i, i};
 	}
 	for (int i = 0; i < 6; i++) {
-		print_side(cube[i].faces, 9);
+		print_side(cube[i], 9);
 	}
 }
 
